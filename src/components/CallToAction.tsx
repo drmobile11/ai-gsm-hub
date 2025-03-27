@@ -11,7 +11,7 @@ const CallToAction = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-accent/5 to-primary/5 -z-10"></div>
       
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+        <div className="max-w-4xl mx-auto glass-dark rounded-2xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Content */}
             <div className="p-8 md:p-12">

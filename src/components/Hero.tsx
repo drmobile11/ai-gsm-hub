@@ -22,7 +22,7 @@ const Hero = () => {
   return (
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-background -z-10"></div>
       <div className="absolute inset-0 bg-grid -z-10"></div>
       
       {/* Floating shapes */}
@@ -76,8 +76,8 @@ const Hero = () => {
           <div className="w-full lg:w-1/2 relative" ref={heroRef}>
             <div className="relative mx-auto w-full max-w-md">
               {/* Main dashboard mockup */}
-              <div className="w-full h-[480px] bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 animate-slide-up">
-                <div className="h-12 bg-accent/5 flex items-center px-4 border-b border-gray-100">
+              <div className="w-full h-[480px] glass-dark rounded-2xl shadow-xl overflow-hidden border border-white/10 animate-slide-up">
+                <div className="h-12 bg-accent/10 flex items-center px-4 border-b border-white/10">
                   <div className="flex gap-2">
                     <div className="w-3 h-3 rounded-full bg-red-400"></div>
                     <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
@@ -85,45 +85,45 @@ const Hero = () => {
                   </div>
                 </div>
                 <div className="p-4">
-                  <div className="w-full h-10 bg-gray-100 rounded-md mb-4"></div>
+                  <div className="w-full h-10 bg-white/5 rounded-md mb-4"></div>
                   <div className="grid grid-cols-3 gap-4 mb-4">
                     <div className="bg-accent/10 h-28 rounded-lg flex flex-col items-center justify-center">
                       <Smartphone className="h-8 w-8 text-accent mb-2" />
-                      <div className="w-16 h-3 bg-gray-200 rounded"></div>
+                      <div className="w-16 h-3 bg-white/10 rounded"></div>
                     </div>
                     <div className="bg-primary/10 h-28 rounded-lg flex flex-col items-center justify-center">
                       <Server className="h-8 w-8 text-primary mb-2" />
-                      <div className="w-16 h-3 bg-gray-200 rounded"></div>
+                      <div className="w-16 h-3 bg-white/10 rounded"></div>
                     </div>
-                    <div className="bg-purple-100 h-28 rounded-lg flex flex-col items-center justify-center">
-                      <Zap className="h-8 w-8 text-purple-500 mb-2" />
-                      <div className="w-16 h-3 bg-gray-200 rounded"></div>
+                    <div className="bg-purple-900/20 h-28 rounded-lg flex flex-col items-center justify-center">
+                      <Zap className="h-8 w-8 text-purple-400 mb-2" />
+                      <div className="w-16 h-3 bg-white/10 rounded"></div>
                     </div>
                   </div>
-                  <div className="w-full h-40 bg-gray-100 rounded-md mb-4"></div>
+                  <div className="w-full h-40 bg-white/5 rounded-md mb-4"></div>
                   <div className="flex gap-4">
-                    <div className="w-1/2 h-32 bg-gray-100 rounded-md"></div>
-                    <div className="w-1/2 h-32 bg-gray-100 rounded-md"></div>
+                    <div className="w-1/2 h-32 bg-white/5 rounded-md"></div>
+                    <div className="w-1/2 h-32 bg-white/5 rounded-md"></div>
                   </div>
                 </div>
               </div>
               
               {/* Floating card 1 */}
-              <div className="absolute -top-6 -right-6 w-36 h-24 bg-white rounded-lg shadow-lg flex flex-col items-center justify-center p-3 border border-gray-100 animate-float">
-                <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mb-2">
+              <div className="absolute -top-6 -right-6 w-36 h-24 glass-dark rounded-lg shadow-lg flex flex-col items-center justify-center p-3 border border-white/10 animate-float">
+                <div className="w-8 h-8 rounded-full bg-green-900/30 flex items-center justify-center mb-2">
                   <div className="w-4 h-4 rounded-full bg-green-500"></div>
                 </div>
-                <div className="w-full h-2 bg-gray-100 rounded-full"></div>
-                <div className="w-2/3 h-2 bg-gray-100 rounded-full mt-2"></div>
+                <div className="w-full h-2 bg-white/10 rounded-full"></div>
+                <div className="w-2/3 h-2 bg-white/10 rounded-full mt-2"></div>
               </div>
               
               {/* Floating card 2 */}
-              <div className="absolute -bottom-6 -left-6 w-36 h-24 bg-white rounded-lg shadow-lg flex flex-col items-center justify-center p-3 border border-gray-100 animate-float animation-delay-500">
-                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mb-2">
+              <div className="absolute -bottom-6 -left-6 w-36 h-24 glass-dark rounded-lg shadow-lg flex flex-col items-center justify-center p-3 border border-white/10 animate-float animation-delay-500">
+                <div className="w-8 h-8 rounded-full bg-blue-900/30 flex items-center justify-center mb-2">
                   <div className="w-4 h-4 rounded-full bg-blue-500"></div>
                 </div>
-                <div className="w-full h-2 bg-gray-100 rounded-full"></div>
-                <div className="w-2/3 h-2 bg-gray-100 rounded-full mt-2"></div>
+                <div className="w-full h-2 bg-white/10 rounded-full"></div>
+                <div className="w-2/3 h-2 bg-white/10 rounded-full mt-2"></div>
               </div>
             </div>
           </div>

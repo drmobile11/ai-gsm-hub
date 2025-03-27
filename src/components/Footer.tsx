@@ -4,7 +4,7 @@ import { Facebook, Twitter, Instagram, Linkedin, Github } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 pt-16 pb-12 border-t border-gray-100">
+    <footer className="bg-black/20 pt-16 pb-12 border-t border-white/10">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Logo and description */}
@@ -24,7 +24,7 @@ const Footer = () => {
                 <a
                   key={i}
                   href="#"
-                  className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-accent transition-colors hover-lift"
+                  className="w-10 h-10 rounded-full glass-dark flex items-center justify-center text-gray-400 hover:text-accent transition-colors hover-lift"
                 >
                   <Icon className="h-5 w-5" />
                 </a>
@@ -73,7 +73,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground mb-4 md:mb-0">
             © {new Date().getFullYear()} GSM Hub. All rights reserved.
           </p>
