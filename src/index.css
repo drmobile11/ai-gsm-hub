@@ -15,6 +15,7 @@
     --popover-foreground: 210 40% 98%;
 
     --primary: 217 91% 60%;
+    --primary-rgb: 37, 99, 235;
     --primary-foreground: 222 47% 11%;
 
     --secondary: 217 33% 17%;
@@ -24,6 +25,7 @@
     --muted-foreground: 215 20% 65%;
 
     --accent: 262 83% 58%;
+    --accent-rgb: 124, 58, 237;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -32,6 +34,19 @@
     --border: 217 33% 17%;
     --input: 217 33% 17%;
     --ring: 224 71% 90%;
+
+    --blue: 217 91% 60%;
+    --blue-rgb: 37, 99, 235;
+    --purple: 262 83% 58%;
+    --purple-rgb: 124, 58, 237;
+    --green: 142 71% 45%;
+    --green-rgb: 34, 197, 94;
+    --amber: 38 92% 50%;
+    --amber-rgb: 245, 158, 11;
+    --pink: 330 81% 60%;
+    --pink-rgb: 236, 72, 153;
+    --indigo: 244 75% 57%;
+    --indigo-rgb: 79, 70, 229;
   }
 }
 
@@ -67,7 +82,7 @@
 }
 
 .glass-dark {
-  background: rgba(30, 30, 60, 0.15);
+  background: rgba(15, 15, 30, 0.2);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.05);

@@ -17,11 +17,9 @@ const ServiceCard = ({ title, description, icon: Icon, color, delay }: ServiceCa
       className="glass-dark rounded-2xl p-6 hover-lift border-white/10"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className={cn(
-        "w-12 h-12 rounded-lg flex items-center justify-center mb-5",
-        `bg-${color}-500/20`
-      )}>
-        <Icon className={cn("h-6 w-6", `text-${color}-400`)} />
+      <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-5 bg-opacity-20"
+        style={{ backgroundColor: `rgba(var(--${color}-rgb), 0.2)` }}>
+        <Icon className="h-6 w-6" style={{ color: `hsl(var(--${color}))` }} />
       </div>
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
       <p className="text-muted-foreground">{description}</p>
@@ -35,42 +33,42 @@ const Services = () => {
       title: "IMEI Unlocking",
       description: "Automatic IMEI validation and unlocking with real-time status updates.",
       icon: Smartphone,
-      color: "blue",
+      color: "primary",
       delay: 100
     },
     {
       title: "Server Unlocks",
       description: "Connect to multiple GSM servers for fast and efficient network unlocking.",
       icon: Server,
-      color: "purple",
+      color: "accent",
       delay: 200
     },
     {
       title: "Remote Unlocking",
       description: "Software-based remote solutions for device unlocking and firmware updates.",
       icon: Laptop,
-      color: "indigo",
+      color: "primary",
       delay: 300
     },
     {
       title: "API Integration",
       description: "Integrate with popular GSM reseller APIs like Dhru Fusion and UnlockBase.",
       icon: Code,
-      color: "pink",
+      color: "accent",
       delay: 400
     },
     {
       title: "Secure Processing",
       description: "End-to-end encrypted processing of all unlock requests and transactions.",
       icon: Shield,
-      color: "green",
+      color: "primary",
       delay: 500
     },
     {
       title: "Payment System",
       description: "Built-in credit system with support for multiple payment gateways.",
       icon: CreditCard,
-      color: "amber",
+      color: "accent",
       delay: 600
     }
   ];

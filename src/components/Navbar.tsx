@@ -17,6 +17,16 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navigationItems = [
+    { name: 'Services', href: '#services' },
+    { name: 'Features', href: '#features' },
+    { name: 'IMEI Unlock', href: '#imei-unlocking' },
+    { name: 'Server Unlock', href: '#server-unlocks' },
+    { name: 'Remote Tools', href: '#remote-unlocking' },
+    { name: 'Files', href: '#file-downloads' },
+    { name: 'Dashboard', href: '#dashboard' }
+  ];
+
   return (
     <header
       className={cn(
@@ -39,14 +49,14 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          <ul className="flex space-x-8">
-            {['Services', 'Features', 'Pricing', 'API Docs'].map((item) => (
-              <li key={item}>
+          <ul className="flex space-x-6">
+            {navigationItems.map((item) => (
+              <li key={item.name}>
                 <a 
-                  href={`#${item.toLowerCase()}`}
+                  href={item.href}
                   className="text-sm font-medium text-gray-200 hover:text-accent transition-colors"
                 >
-                  {item}
+                  {item.name}
                 </a>
               </li>
             ))}
@@ -83,14 +93,14 @@ const Navbar = () => {
           )}
         >
           <ul className="flex flex-col space-y-6 items-center">
-            {['Services', 'Features', 'Pricing', 'API Docs'].map((item) => (
-              <li key={item}>
+            {navigationItems.map((item) => (
+              <li key={item.name}>
                 <a
-                  href={`#${item.toLowerCase()}`}
+                  href={item.href}
                   className="text-xl font-medium text-white hover:text-accent transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item}
+                  {item.name}
                 </a>
               </li>
             ))}
