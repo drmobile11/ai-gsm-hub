@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Code, Zap, Globe, Bot, BarChart, Layers } from 'lucide-react';
+import { Code, Zap, Globe, Bot, BarChart, Layers, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Features = () => {
