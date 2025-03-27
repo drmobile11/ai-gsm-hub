@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Smartphone, Server, Laptop, HelpCircle, Shield, CreditCard } from 'lucide-react';
+import { Smartphone, Server, Laptop, Code, Shield, CreditCard } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ServiceCardProps {
@@ -14,14 +14,14 @@ interface ServiceCardProps {
 const ServiceCard = ({ title, description, icon: Icon, color, delay }: ServiceCardProps) => {
   return (
     <div 
-      className="bg-white rounded-2xl p-6 shadow-sm hover-lift border border-gray-100"
+      className="glass-dark rounded-2xl p-6 hover-lift border-white/10"
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className={cn(
         "w-12 h-12 rounded-lg flex items-center justify-center mb-5",
-        `bg-${color}-100`
+        `bg-${color}-500/20`
       )}>
-        <Icon className={cn("h-6 w-6", `text-${color}-500`)} />
+        <Icon className={cn("h-6 w-6", `text-${color}-400`)} />
       </div>
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
       <p className="text-muted-foreground">{description}</p>
@@ -55,7 +55,7 @@ const Services = () => {
     {
       title: "API Integration",
       description: "Integrate with popular GSM reseller APIs like Dhru Fusion and UnlockBase.",
-      icon: HelpCircle,
+      icon: Code,
       color: "pink",
       delay: 400
     },
@@ -76,10 +76,10 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-gray-50">
+    <section id="services" className="py-20 bg-gradient-to-b from-background to-background/80">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Comprehensive GSM Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">Comprehensive GSM Services</h2>
           <p className="text-lg text-muted-foreground">
             Our platform offers a complete suite of GSM unlocking and service management tools.
           </p>

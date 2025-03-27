@@ -21,7 +21,7 @@ const Navbar = () => {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
-        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
+        isScrolled ? 'bg-background/80 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
@@ -31,10 +31,7 @@ const Navbar = () => {
             <div className="w-8 h-8 rounded-md bg-gradient-to-tr from-accent to-primary flex items-center justify-center text-white font-bold">
               G
             </div>
-            <span className={cn(
-              "font-semibold text-xl transition-colors",
-              isScrolled ? "text-foreground" : "text-foreground"
-            )}>
+            <span className="font-semibold text-xl text-white">
               GSM Hub
             </span>
           </a>
@@ -47,10 +44,7 @@ const Navbar = () => {
               <li key={item}>
                 <a 
                   href={`#${item.toLowerCase()}`}
-                  className={cn(
-                    "text-sm font-medium transition-colors hover:text-accent",
-                    isScrolled ? "text-foreground" : "text-foreground"
-                  )}
+                  className="text-sm font-medium text-gray-200 hover:text-accent transition-colors"
                 >
                   {item}
                 </a>
@@ -75,22 +69,16 @@ const Navbar = () => {
           aria-label="Toggle menu"
         >
           {isMenuOpen ? (
-            <X className={cn(
-              "h-6 w-6 transition-colors",
-              isScrolled ? "text-foreground" : "text-foreground"
-            )} />
+            <X className="h-6 w-6 text-white" />
           ) : (
-            <Menu className={cn(
-              "h-6 w-6 transition-colors",
-              isScrolled ? "text-foreground" : "text-foreground"
-            )} />
+            <Menu className="h-6 w-6 text-white" />
           )}
         </button>
 
         {/* Mobile Navigation */}
         <div
           className={cn(
-            "fixed inset-0 bg-white/95 backdrop-blur-md z-5 flex flex-col justify-center items-center transition-all duration-300 ease-in-out",
+            "fixed inset-0 bg-background/95 backdrop-blur-md z-5 flex flex-col justify-center items-center transition-all duration-300 ease-in-out",
             isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
           )}
         >
@@ -99,7 +87,7 @@ const Navbar = () => {
               <li key={item}>
                 <a
                   href={`#${item.toLowerCase()}`}
-                  className="text-xl font-medium text-foreground hover:text-accent transition-colors"
+                  className="text-xl font-medium text-white hover:text-accent transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item}
