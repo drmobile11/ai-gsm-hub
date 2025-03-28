@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,7 +25,7 @@ const Navbar = () => {
     { name: 'Server Unlock', href: '#server-unlocks' },
     { name: 'Remote Tools', href: '#remote-unlocking' },
     { name: 'Files', href: '#file-downloads' },
-    { name: 'Dashboard', href: '#dashboard' }
+    { name: 'Dashboard', href: '/admin' }
   ];
 
   return (
@@ -52,12 +53,21 @@ const Navbar = () => {
           <ul className="flex space-x-6">
             {navigationItems.map((item) => (
               <li key={item.name}>
-                <a 
-                  href={item.href}
-                  className="text-sm font-medium text-gray-200 hover:text-accent transition-colors"
-                >
-                  {item.name}
-                </a>
+                {item.href.startsWith('#') ? (
+                  <a 
+                    href={item.href}
+                    className="text-sm font-medium text-gray-200 hover:text-accent transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="text-sm font-medium text-gray-200 hover:text-accent transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -95,13 +105,23 @@ const Navbar = () => {
           <ul className="flex flex-col space-y-6 items-center">
             {navigationItems.map((item) => (
               <li key={item.name}>
-                <a
-                  href={item.href}
-                  className="text-xl font-medium text-white hover:text-accent transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
+                {item.href.startsWith('#') ? (
+                  <a
+                    href={item.href}
+                    className="text-xl font-medium text-white hover:text-accent transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="text-xl font-medium text-white hover:text-accent transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </li>
             ))}
             <li className="pt-4">

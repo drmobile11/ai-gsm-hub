@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -5,6 +6,16 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ImeiServices from "./pages/admin/services/ImeiServices";
+import ServerServices from "./pages/admin/services/ServerServices";
+import RemoteServices from "./pages/admin/services/RemoteServices";
+import FileServices from "./pages/admin/services/FileServices";
+import UserManagement from "./pages/admin/UserManagement";
+import Transactions from "./pages/admin/Transactions";
+import PageBuilder from "./pages/admin/PageBuilder";
+import Settings from "./pages/admin/Settings";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +27,17 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="services/imei" element={<ImeiServices />} />
+            <Route path="services/server" element={<ServerServices />} />
+            <Route path="services/remote" element={<RemoteServices />} />
+            <Route path="services/files" element={<FileServices />} />
+            <Route path="users" element={<UserManagement />} />
+            <Route path="transactions" element={<Transactions />} />
+            <Route path="page-builder" element={<PageBuilder />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
