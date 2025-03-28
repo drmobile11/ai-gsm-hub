@@ -17,6 +17,11 @@ import Transactions from "./pages/admin/Transactions";
 import PageBuilder from "./pages/admin/PageBuilder";
 import Settings from "./pages/admin/Settings";
 
+// Store frontend imports
+import StoreLayout from "./pages/store/StoreLayout";
+import StoreFront from "./pages/store/StoreFront";
+import StoreLogin from "./pages/store/auth/StoreLogin";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -27,6 +32,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          
+          {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="services/imei" element={<ImeiServices />} />
@@ -38,6 +45,14 @@ const App = () => (
             <Route path="page-builder" element={<PageBuilder />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+          
+          {/* Store Routes */}
+          <Route path="/store" element={<StoreLayout />}>
+            <Route index element={<StoreFront />} />
+            <Route path="login" element={<StoreLogin />} />
+            {/* Add more store routes as needed */}
+          </Route>
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
