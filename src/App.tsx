@@ -21,6 +21,8 @@ import Settings from "./pages/admin/Settings";
 import StoreLayout from "./pages/store/StoreLayout";
 import StoreFront from "./pages/store/StoreFront";
 import StoreLogin from "./pages/store/auth/StoreLogin";
+import UserDashboard from "./pages/store/auth/UserDashboard";
+import ResellerDashboard from "./pages/store/auth/ResellerDashboard";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +52,8 @@ const App = () => (
           <Route path="/store" element={<StoreLayout />}>
             <Route index element={<StoreFront />} />
             <Route path="login" element={<StoreLogin />} />
+            <Route path="user/dashboard" element={<UserDashboard />} />
+            <Route path="reseller/dashboard" element={<ResellerDashboard />} />
             {/* Add more store routes as needed */}
           </Route>
           
