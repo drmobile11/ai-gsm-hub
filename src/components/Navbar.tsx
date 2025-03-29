@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import ThemeSwitcher from '@/components/ThemeSwitcher';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -73,8 +74,9 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        {/* CTA Button */}
-        <div className="hidden md:block">
+        {/* Theme Switcher + CTA Button */}
+        <div className="hidden md:flex items-center gap-2">
+          <ThemeSwitcher />
           <Button
             className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
           >
@@ -83,17 +85,20 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden focus:outline-none z-10"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? (
-            <X className="h-6 w-6 text-white" />
-          ) : (
-            <Menu className="h-6 w-6 text-white" />
-          )}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeSwitcher />
+          <button
+            className="focus:outline-none z-10"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6 text-white" />
+            ) : (
+              <Menu className="h-6 w-6 text-white" />
+            )}
+          </button>
+        </div>
 
         {/* Mobile Navigation */}
         <div

@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type ThemeTemplate = {
@@ -11,12 +10,14 @@ export type ThemeTemplate = {
   textPrimary: string;
   textSecondary: string;
   borderColor: string;
+  mode: 'dark' | 'light';
 }
 
 // Default templates
 export const themeTemplates: ThemeTemplate[] = [
+  // Dark themes
   {
-    id: 'tp1',
+    id: 'dark-pulse',
     name: 'Dark Pulse',
     primary: 'hsl(217, 91%, 60%)', // blue
     accent: 'hsl(262, 83%, 58%)', // purple
@@ -25,9 +26,10 @@ export const themeTemplates: ThemeTemplate[] = [
     textPrimary: 'hsl(210, 40%, 98%)', // white
     textSecondary: 'hsl(215, 20%, 65%)', // muted
     borderColor: 'hsl(217, 33%, 17%)', // border
+    mode: 'dark',
   },
   {
-    id: 'tp2',
+    id: 'dark-emerald',
     name: 'Emerald Dusk',
     primary: 'hsl(142, 71%, 45%)', // green
     accent: 'hsl(330, 81%, 60%)', // pink
@@ -36,9 +38,10 @@ export const themeTemplates: ThemeTemplate[] = [
     textPrimary: 'hsl(210, 40%, 98%)', // white
     textSecondary: 'hsl(214, 20%, 69%)', // muted
     borderColor: 'hsl(215, 25%, 27%)', // border
+    mode: 'dark',
   },
   {
-    id: 'tp3',
+    id: 'dark-amber',
     name: 'Amber Glow',
     primary: 'hsl(38, 92%, 50%)', // amber
     accent: 'hsl(244, 75%, 57%)', // indigo
@@ -47,6 +50,32 @@ export const themeTemplates: ThemeTemplate[] = [
     textPrimary: 'hsl(210, 40%, 98%)', // white
     textSecondary: 'hsl(210, 14%, 66%)', // muted
     borderColor: 'hsl(0, 0%, 20%)', // border
+    mode: 'dark',
+  },
+  // Light themes
+  {
+    id: 'light-clean',
+    name: 'Light Clean',
+    primary: 'hsl(217, 91%, 60%)', // blue
+    accent: 'hsl(262, 83%, 58%)', // purple
+    background: 'hsl(0, 0%, 100%)', // white
+    cardBackground: 'hsl(0, 0%, 98%)',
+    textPrimary: 'hsl(222, 47%, 11%)', // dark blue
+    textSecondary: 'hsl(215, 16%, 47%)', // gray
+    borderColor: 'hsl(214, 32%, 91%)', // light gray
+    mode: 'light',
+  },
+  {
+    id: 'light-soft',
+    name: 'Soft Light',
+    primary: 'hsl(142, 71%, 45%)', // green
+    accent: 'hsl(330, 81%, 60%)', // pink
+    background: 'hsl(210, 20%, 98%)', // off-white
+    cardBackground: 'hsl(0, 0%, 100%)',
+    textPrimary: 'hsl(215, 25%, 27%)', // dark gray-blue
+    textSecondary: 'hsl(215, 16%, 47%)', // medium gray
+    borderColor: 'hsl(214, 32%, 91%)', // light gray
+    mode: 'light',
   }
 ];
 
@@ -55,6 +84,7 @@ type ThemeContextType = {
   changeTheme: (themeId: string) => void;
   applyCustomTheme: (theme: Partial<ThemeTemplate>) => void;
   availableTemplates: ThemeTemplate[];
+  toggleMode: () => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -87,23 +117,32 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     
     root.style.setProperty('--primary', currentTheme.primary);
     root.style.setProperty('--primary-rgb', hexToRgb(currentTheme.primary));
+    root.style.setProperty('--primary-foreground', 
+      currentTheme.mode === 'dark' ? 'hsl(210, 40%, 98%)' : 'hsl(222, 47%, 11%)');
     
-    root.style.setProperty('--secondary', 'hsl(217, 33%, 17%)');
-    root.style.setProperty('--secondary-foreground', currentTheme.textPrimary);
+    root.style.setProperty('--secondary', 
+      currentTheme.mode === 'dark' ? 'hsl(217, 33%, 17%)' : 'hsl(210, 40%, 96%)');
+    root.style.setProperty('--secondary-foreground', 
+      currentTheme.mode === 'dark' ? 'hsl(210, 40%, 98%)' : 'hsl(222, 47%, 11%)');
     
-    root.style.setProperty('--muted', 'hsl(217, 33%, 17%)');
+    root.style.setProperty('--muted', 
+      currentTheme.mode === 'dark' ? 'hsl(217, 33%, 17%)' : 'hsl(210, 40%, 96%)');
     root.style.setProperty('--muted-foreground', currentTheme.textSecondary);
     
     root.style.setProperty('--accent', currentTheme.accent);
     root.style.setProperty('--accent-rgb', hexToRgb(currentTheme.accent));
-    root.style.setProperty('--accent-foreground', currentTheme.textPrimary);
+    root.style.setProperty('--accent-foreground', 
+      currentTheme.mode === 'dark' ? 'hsl(210, 40%, 98%)' : 'hsl(222, 47%, 11%)');
     
-    root.style.setProperty('--destructive', 'hsl(0, 62.8%, 30.6%)');
-    root.style.setProperty('--destructive-foreground', currentTheme.textPrimary);
+    root.style.setProperty('--destructive', 
+      currentTheme.mode === 'dark' ? 'hsl(0, 62.8%, 30.6%)' : 'hsl(0, 84.2%, 60.2%)');
+    root.style.setProperty('--destructive-foreground', 
+      currentTheme.mode === 'dark' ? 'hsl(210, 40%, 98%)' : 'hsl(210, 40%, 98%)');
     
     root.style.setProperty('--border', currentTheme.borderColor);
     root.style.setProperty('--input', currentTheme.borderColor);
-    root.style.setProperty('--ring', 'hsl(224, 71%, 90%)');
+    root.style.setProperty('--ring', 
+      currentTheme.mode === 'dark' ? 'hsl(224, 71%, 90%)' : 'hsl(215, 20.2%, 65.1%)');
     
     // Save to localStorage
     localStorage.setItem('gsmhub-theme', currentTheme.id);
@@ -122,13 +161,32 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       name: 'Custom Theme'
     }));
   };
+
+  const toggleMode = () => {
+    // Find a theme with opposite mode but similar color scheme
+    const currentMode = currentTheme.mode;
+    const targetMode = currentMode === 'dark' ? 'light' : 'dark';
+    
+    // First try to find a theme with the same primary color
+    const similarThemes = themeTemplates.filter(t => 
+      t.mode === targetMode && t.primary === currentTheme.primary);
+    
+    if (similarThemes.length > 0) {
+      setCurrentTheme(similarThemes[0]);
+    } else {
+      // Otherwise just pick the first theme of the target mode
+      const newTheme = themeTemplates.find(t => t.mode === targetMode);
+      if (newTheme) setCurrentTheme(newTheme);
+    }
+  };
   
   return (
     <ThemeContext.Provider value={{
       currentTheme,
       changeTheme,
       applyCustomTheme,
-      availableTemplates: themeTemplates
+      availableTemplates: themeTemplates,
+      toggleMode
     }}>
       {children}
     </ThemeContext.Provider>
@@ -139,7 +197,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 function hexToRgb(hsl: string): string {
   // Simple conversion for demo - in production use a proper HSL to RGB conversion
   // This is a placeholder function
-  return "37, 99, 235"; // Example blue RGB
+  if (hsl.includes('38, 92%, 50%')) return "245, 158, 11"; // amber
+  if (hsl.includes('142, 71%, 45%')) return "34, 197, 94"; // green
+  if (hsl.includes('244, 75%, 57%')) return "79, 70, 229"; // indigo
+  if (hsl.includes('330, 81%, 60%')) return "236, 72, 153"; // pink
+  if (hsl.includes('262, 83%, 58%')) return "124, 58, 237"; // purple
+  return "37, 99, 235"; // blue default
 }
 
 export const useTheme = () => {
