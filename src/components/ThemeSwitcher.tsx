@@ -79,7 +79,7 @@ const ThemeSwitcher = ({ className }: { className?: string }) => {
                     </div>
                     <span className="text-xs">{template.name}</span>
                     {currentTheme.id === template.id && (
-                      <Badge variant="accent" className="ml-auto text-[0.6rem] px-1 py-0">Active</Badge>
+                      <Badge variant="outline" className="ml-auto text-[0.6rem] px-1 py-0">Active</Badge>
                     )}
                   </DropdownMenuItem>
                 ))}

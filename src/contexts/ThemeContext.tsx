@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type ThemeTemplate = {
@@ -90,20 +91,33 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // Initialize with the first dark theme (dark-pulse)
   const [currentTheme, setCurrentTheme] = useState<ThemeTemplate>(themeTemplates[0]);
   
-  // Load theme from localStorage on initial render
+  // Load theme from localStorage on initial render or use dark-pulse as default
   useEffect(() => {
     const savedThemeId = localStorage.getItem('gsmhub-theme');
     if (savedThemeId) {
       const savedTheme = themeTemplates.find(t => t.id === savedThemeId);
-      if (savedTheme) setCurrentTheme(savedTheme);
+      if (savedTheme) {
+        setCurrentTheme(savedTheme);
+      }
+    } else {
+      // If no theme is saved, default to dark-pulse
+      localStorage.setItem('gsmhub-theme', 'dark-pulse');
     }
   }, []);
   
   // Apply theme to CSS variables
   useEffect(() => {
     const root = document.documentElement;
+    
+    // Force dark mode class on document for components that rely on that
+    if (currentTheme.mode === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
     
     // Update CSS variables
     root.style.setProperty('--background', currentTheme.background);
