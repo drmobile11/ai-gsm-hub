@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type ThemeTemplate = {
@@ -91,20 +90,27 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Initialize with the first dark theme (dark-pulse)
-  const [currentTheme, setCurrentTheme] = useState<ThemeTemplate>(themeTemplates[0]);
+  // Always initialize with dark-pulse theme
+  const defaultDarkTheme = themeTemplates.find(t => t.id === 'dark-pulse') || themeTemplates[0];
+  const [currentTheme, setCurrentTheme] = useState<ThemeTemplate>(defaultDarkTheme);
   
-  // Load theme from localStorage on initial render or use dark-pulse as default
+  // Force dark mode on initial load, then check localStorage
   useEffect(() => {
+    // Force dark mode class immediately on document
+    document.documentElement.classList.add('dark');
+    
+    // Set default theme in localStorage if not already set
+    if (!localStorage.getItem('gsmhub-theme')) {
+      localStorage.setItem('gsmhub-theme', 'dark-pulse');
+    }
+    
+    // Then try to load saved theme
     const savedThemeId = localStorage.getItem('gsmhub-theme');
     if (savedThemeId) {
       const savedTheme = themeTemplates.find(t => t.id === savedThemeId);
       if (savedTheme) {
         setCurrentTheme(savedTheme);
       }
-    } else {
-      // If no theme is saved, default to dark-pulse
-      localStorage.setItem('gsmhub-theme', 'dark-pulse');
     }
   }, []);
   
@@ -177,21 +183,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const toggleMode = () => {
-    // Find a theme with opposite mode but similar color scheme
-    const currentMode = currentTheme.mode;
-    const targetMode = currentMode === 'dark' ? 'light' : 'dark';
+    // Simply toggle between dark and light mode
+    const targetMode = currentTheme.mode === 'dark' ? 'light' : 'dark';
     
-    // First try to find a theme with the same primary color
-    const similarThemes = themeTemplates.filter(t => 
-      t.mode === targetMode && t.primary === currentTheme.primary);
-    
-    if (similarThemes.length > 0) {
-      setCurrentTheme(similarThemes[0]);
-    } else {
-      // Otherwise just pick the first theme of the target mode
-      const newTheme = themeTemplates.find(t => t.mode === targetMode);
-      if (newTheme) setCurrentTheme(newTheme);
-    }
+    // Find the first theme with the target mode
+    const newTheme = themeTemplates.find(t => t.mode === targetMode);
+    if (newTheme) setCurrentTheme(newTheme);
   };
   
   return (
