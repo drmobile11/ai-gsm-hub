@@ -76,15 +76,34 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const root = document.documentElement;
     
     // Update CSS variables
+    root.style.setProperty('--background', currentTheme.background);
+    root.style.setProperty('--foreground', currentTheme.textPrimary);
+    
+    root.style.setProperty('--card', currentTheme.cardBackground);
+    root.style.setProperty('--card-foreground', currentTheme.textPrimary);
+    
+    root.style.setProperty('--popover', currentTheme.background);
+    root.style.setProperty('--popover-foreground', currentTheme.textPrimary);
+    
     root.style.setProperty('--primary', currentTheme.primary);
     root.style.setProperty('--primary-rgb', hexToRgb(currentTheme.primary));
+    
+    root.style.setProperty('--secondary', 'hsl(217, 33%, 17%)');
+    root.style.setProperty('--secondary-foreground', currentTheme.textPrimary);
+    
+    root.style.setProperty('--muted', 'hsl(217, 33%, 17%)');
+    root.style.setProperty('--muted-foreground', currentTheme.textSecondary);
+    
     root.style.setProperty('--accent', currentTheme.accent);
     root.style.setProperty('--accent-rgb', hexToRgb(currentTheme.accent));
-    root.style.setProperty('--background', currentTheme.background);
-    root.style.setProperty('--card', currentTheme.cardBackground);
-    root.style.setProperty('--foreground', currentTheme.textPrimary);
-    root.style.setProperty('--muted-foreground', currentTheme.textSecondary);
+    root.style.setProperty('--accent-foreground', currentTheme.textPrimary);
+    
+    root.style.setProperty('--destructive', 'hsl(0, 62.8%, 30.6%)');
+    root.style.setProperty('--destructive-foreground', currentTheme.textPrimary);
+    
     root.style.setProperty('--border', currentTheme.borderColor);
+    root.style.setProperty('--input', currentTheme.borderColor);
+    root.style.setProperty('--ring', 'hsl(224, 71%, 90%)');
     
     // Save to localStorage
     localStorage.setItem('gsmhub-theme', currentTheme.id);
