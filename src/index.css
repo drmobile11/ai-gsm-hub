@@ -7,7 +7,7 @@
     /* Default to dark theme values */
     --background: 224 71% 4%;
     --foreground: 210 40% 98%;
-
+    
     --card: 224 71% 4%;
     --card-foreground: 210 40% 98%;
 
@@ -62,11 +62,6 @@
 
   html {
     @apply scroll-smooth;
-  }
-  
-  /* Force dark theme class on html */
-  html {
-    @apply dark;
   }
 }
 

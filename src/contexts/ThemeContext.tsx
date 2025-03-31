@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type ThemeTemplate = {
@@ -114,7 +115,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, []);
   
-  // Apply theme to CSS variables
+  // Apply theme to CSS variables and manage dark class
   useEffect(() => {
     const root = document.documentElement;
     
