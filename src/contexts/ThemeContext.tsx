@@ -111,6 +111,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       const savedTheme = themeTemplates.find(t => t.id === savedThemeId);
       if (savedTheme) {
         setCurrentTheme(savedTheme);
+        // Make sure dark mode class is set correctly based on saved theme
+        if (savedTheme.mode === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
       }
     }
   }, []);
@@ -189,7 +195,15 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     
     // Find the first theme with the target mode
     const newTheme = themeTemplates.find(t => t.mode === targetMode);
-    if (newTheme) setCurrentTheme(newTheme);
+    if (newTheme) {
+      setCurrentTheme(newTheme);
+      // Directly set the dark class for immediate visual feedback
+      if (targetMode === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
   };
   
   return (
