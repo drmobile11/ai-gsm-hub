@@ -1,13 +1,13 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Default to dark theme values */
     --background: 224 71% 4%;
     --foreground: 210 40% 98%;
-    
+
     --card: 224 71% 4%;
     --card-foreground: 210 40% 98%;
 
@@ -16,7 +16,7 @@
 
     --primary: 217 91% 60%;
     --primary-rgb: 37, 99, 235;
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
 
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
@@ -52,7 +52,7 @@
 
 @layer base {
   * {
-    @apply border-border selection:bg-foreground/10 selection:text-foreground;
+    @apply border-border selection:bg-white/10 selection:text-white;
   }
   
   body {
@@ -82,7 +82,10 @@
 }
 
 .glass-dark {
-  @apply bg-background/20 backdrop-blur-md border border-foreground/5;
+  background: rgba(15, 15, 30, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
@@ -92,7 +95,7 @@
 }
 
 .text-gradient {
-  @apply bg-gradient-to-br from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent;
+  @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
 }
 
 .text-gradient-primary {
@@ -128,13 +131,13 @@
 /* Background decorations */
 .bg-grid {
   background-image: 
-    linear-gradient(rgba(var(--primary-rgb), 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(var(--primary-rgb), 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(130, 145, 230, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(130, 145, 230, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
 .bg-dots {
-  background-image: radial-gradient(rgba(var(--primary-rgb), 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(130, 145, 230, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
