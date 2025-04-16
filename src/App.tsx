@@ -1,28 +1,39 @@
 
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+// Landing page
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import ImeiServices from "./pages/admin/services/ImeiServices";
-import ServerServices from "./pages/admin/services/ServerServices";
-import RemoteServices from "./pages/admin/services/RemoteServices";
-import FileServices from "./pages/admin/services/FileServices";
-import UserManagement from "./pages/admin/UserManagement";
-import Transactions from "./pages/admin/Transactions";
-import PageBuilder from "./pages/admin/PageBuilder";
-import Settings from "./pages/admin/Settings";
 
-// Store frontend imports
-import StoreLayout from "./pages/store/StoreLayout";
-import StoreFront from "./pages/store/StoreFront";
-import StoreLogin from "./pages/store/auth/StoreLogin";
-import UserDashboard from "./pages/store/auth/UserDashboard";
-import ResellerDashboard from "./pages/store/auth/ResellerDashboard";
+// Admin module
+import AdminLayout from "./modules/admin/AdminLayout";
+import AdminDashboard from "./modules/admin/pages/AdminDashboard";
+import ImeiServices from "./modules/admin/pages/services/ImeiServices";
+import ServerServices from "./modules/admin/pages/services/ServerServices";
+import RemoteServices from "./modules/admin/pages/services/RemoteServices";
+import FileServices from "./modules/admin/pages/services/FileServices";
+import UserManagement from "./modules/admin/pages/UserManagement";
+import Transactions from "./modules/admin/pages/Transactions";
+import PageBuilder from "./modules/admin/pages/PageBuilder";
+import Settings from "./modules/admin/pages/Settings";
+
+// Store module
+import StoreLayout from "./modules/store/StoreLayout";
+import StoreFront from "./modules/store/pages/StoreFront";
+import StoreLogin from "./modules/store/pages/auth/StoreLogin";
+import UserDashboard from "./modules/store/pages/auth/UserDashboard";
+
+// Reseller module
+import ResellerLayout from "./modules/reseller/ResellerLayout";
+import ResellerDashboard from "./modules/reseller/pages/ResellerDashboard";
+import ResellerLogin from "./modules/reseller/pages/ResellerLogin";
+import CustomerManagement from "./modules/reseller/pages/CustomerManagement";
+import ResellerOrders from "./modules/reseller/pages/ResellerOrders";
+import ResellerServices from "./modules/reseller/pages/ResellerServices";
 
 const queryClient = new QueryClient();
 
@@ -53,8 +64,15 @@ const App = () => (
             <Route index element={<StoreFront />} />
             <Route path="login" element={<StoreLogin />} />
             <Route path="user/dashboard" element={<UserDashboard />} />
-            <Route path="reseller/dashboard" element={<ResellerDashboard />} />
-            {/* Add more store routes as needed */}
+          </Route>
+          
+          {/* Reseller Routes */}
+          <Route path="/reseller" element={<ResellerLayout />}>
+            <Route index element={<ResellerDashboard />} />
+            <Route path="login" element={<ResellerLogin />} />
+            <Route path="customers" element={<CustomerManagement />} />
+            <Route path="orders" element={<ResellerOrders />} />
+            <Route path="services" element={<ResellerServices />} />
           </Route>
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
