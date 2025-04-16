@@ -46,8 +46,8 @@ const AdminSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={location.pathname === '/' || location.pathname === '/admin/'}>
-                  <NavLink to="/">
+                <SidebarMenuButton asChild isActive={location.pathname === '/admin' || location.pathname === '/admin/'}>
+                  <NavLink to="/admin">
                     <BarChart3 />
                     <span>Dashboard</span>
                   </NavLink>
@@ -64,8 +64,8 @@ const AdminSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={location.pathname === '/services/imei'}>
-                  <NavLink to="/services/imei">
+                <SidebarMenuButton asChild isActive={location.pathname === '/admin/services/imei'}>
+                  <NavLink to="/admin/services/imei">
                     <Smartphone />
                     <span>IMEI Unlocking</span>
                   </NavLink>
@@ -73,8 +73,8 @@ const AdminSidebar = () => {
               </SidebarMenuItem>
               
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={location.pathname === '/services/server'}>
-                  <NavLink to="/services/server">
+                <SidebarMenuButton asChild isActive={location.pathname === '/admin/services/server'}>
+                  <NavLink to="/admin/services/server">
                     <Server />
                     <span>Server Unlocks</span>
                   </NavLink>
@@ -82,8 +82,8 @@ const AdminSidebar = () => {
               </SidebarMenuItem>
               
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={location.pathname === '/services/remote'}>
-                  <NavLink to="/services/remote">
+                <SidebarMenuButton asChild isActive={location.pathname === '/admin/services/remote'}>
+                  <NavLink to="/admin/services/remote">
                     <Zap />
                     <span>Remote Unlocking</span>
                   </NavLink>
@@ -91,8 +91,8 @@ const AdminSidebar = () => {
               </SidebarMenuItem>
               
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={location.pathname === '/services/files'}>
-                  <NavLink to="/services/files">
+                <SidebarMenuButton asChild isActive={location.pathname === '/admin/services/files'}>
+                  <NavLink to="/admin/services/files">
                     <FileDown />
                     <span>File Downloads</span>
                   </NavLink>
@@ -109,8 +109,8 @@ const AdminSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={location.pathname === '/users'}>
-                  <NavLink to="/users">
+                <SidebarMenuButton asChild isActive={location.pathname === '/admin/users'}>
+                  <NavLink to="/admin/users">
                     <Users />
                     <span>User Management</span>
                   </NavLink>
@@ -118,8 +118,8 @@ const AdminSidebar = () => {
               </SidebarMenuItem>
               
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={location.pathname === '/transactions'}>
-                  <NavLink to="/transactions">
+                <SidebarMenuButton asChild isActive={location.pathname === '/admin/transactions'}>
+                  <NavLink to="/admin/transactions">
                     <CreditCard />
                     <span>Transactions</span>
                   </NavLink>
@@ -127,8 +127,8 @@ const AdminSidebar = () => {
               </SidebarMenuItem>
               
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={location.pathname === '/page-builder'}>
-                  <NavLink to="/page-builder">
+                <SidebarMenuButton asChild isActive={location.pathname === '/admin/page-builder'}>
+                  <NavLink to="/admin/page-builder">
                     <Layout />
                     <span>Page Builder</span>
                   </NavLink>
@@ -136,8 +136,8 @@ const AdminSidebar = () => {
               </SidebarMenuItem>
               
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={location.pathname === '/settings'}>
-                  <NavLink to="/settings">
+                <SidebarMenuButton asChild isActive={location.pathname === '/admin/settings'}>
+                  <NavLink to="/admin/settings">
                     <SettingsIcon />
                     <span>Settings</span>
                   </NavLink>

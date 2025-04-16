@@ -17,17 +17,17 @@ const ResellerHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { title: 'Dashboard', path: '/' },
-    { title: 'Customers', path: '/customers' },
-    { title: 'Orders', path: '/orders' },
-    { title: 'Services', path: '/services' },
+    { title: 'Dashboard', path: '/reseller' },
+    { title: 'Customers', path: '/reseller/customers' },
+    { title: 'Orders', path: '/reseller/orders' },
+    { title: 'Services', path: '/reseller/services' },
   ];
 
   return (
     <header className="bg-background/80 backdrop-blur-md border-b border-border/40 sticky top-0 z-10">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/reseller" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-md bg-gradient-to-tr from-accent to-primary flex items-center justify-center text-white font-bold">
               G
             </div>
