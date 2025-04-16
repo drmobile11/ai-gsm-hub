@@ -1,69 +1,151 @@
-# Welcome to your Lovable project
 
-## Project info
+# GSM Hub Multi-Module Application
 
-**URL**: https://lovable.dev/projects/46e9b272-f6f2-412c-afeb-0f82dafadbe0
+This project is structured as three separate applications (Admin, Store, and Reseller) that can be deployed independently or together.
 
-## How can I edit this code?
+## Project Structure
 
-There are several ways of editing your application.
+The application is divided into three main modules:
 
-**Use Lovable**
+- **Admin Panel**: Management dashboard for administrators
+- **Store**: Customer-facing e-commerce interface
+- **Reseller Portal**: Dashboard for resellers/partners
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/46e9b272-f6f2-412c-afeb-0f82dafadbe0) and start prompting.
+Each module has its own:
+- Entry point (`admin.tsx`, `store.tsx`, `reseller.tsx`)
+- Layout components
+- Pages and components
+- Routing configuration
 
-Changes made via Lovable will be committed automatically to this repo.
+## Running the Full Application
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+To run the complete application:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Install dependencies
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Running Modules Independently
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Each module can be built and served independently:
 
-**Use GitHub Codespaces**
+### Admin Panel
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```sh
+# Build only the admin panel
+npm run build -- --config vite.config.admin.ts
 
-## What technologies are used for this project?
+# Serve the admin panel
+npm run preview -- --config vite.config.admin.ts
+```
 
-This project is built with .
+### Store
+
+```sh
+# Build only the store
+npm run build -- --config vite.config.store.ts
+
+# Serve the store
+npm run preview -- --config vite.config.store.ts
+```
+
+### Reseller Portal
+
+```sh
+# Build only the reseller portal
+npm run build -- --config vite.config.reseller.ts
+
+# Serve the reseller portal
+npm run preview -- --config vite.config.reseller.ts
+```
+
+## Deploying Modules to Separate Domains
+
+To deploy each module to its own domain:
+
+1. Build each module separately as shown above
+2. Deploy the content of each `dist` folder to its respective domain
+
+### Example Deployment Strategy
+
+- Admin Panel: `admin.example.com` (deploy contents of admin build)
+- Store: `store.example.com` (deploy contents of store build)
+- Reseller Portal: `reseller.example.com` (deploy contents of reseller build)
+
+## Using Modules as Separate Projects
+
+If you want to extract a module as a standalone project:
+
+1. Create a new directory for your project
+2. Copy the following files/directories:
+   - `src/modules/[module-name]` (e.g., `src/modules/admin`)
+   - `src/[module-name].tsx` (e.g., `src/admin.tsx`)
+   - `src/index.css`
+   - `public` folder
+   - Configuration files (package.json, vite.config.ts, tsconfig.json, etc.)
+
+3. Modify `package.json` dependencies to include only what you need
+4. Update import paths in the code if necessary
+
+## Shared Components and Utilities
+
+When extracting a module as a standalone project, remember to copy:
+
+- UI components from `src/components/ui` used by the module
+- Utility functions from `src/lib` used by the module
+- Hooks from `src/hooks` used by the module
+
+## Customizing Configuration
+
+Each module can have its own configuration by creating separate Vite config files:
+
+- `vite.config.admin.ts`
+- `vite.config.store.ts`
+- `vite.config.reseller.ts`
+
+Example configuration for an individual module:
+
+```ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+
+export default defineConfig({
+  build: {
+    outDir: "dist/admin",
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "admin.html"),
+      },
+    },
+  },
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});
+```
+
+## Technology Stack
+
+This project is built with:
 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
+- React Router
+- TanStack Query
 
-## How can I deploy this project?
+## Additional Notes
 
-Simply open [Lovable](https://lovable.dev/projects/46e9b272-f6f2-412c-afeb-0f82dafadbe0) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- Each module uses TanStack Query for data fetching with its own QueryClient
+- Routes are configured in each module's main App component
+- UI components from shadcn-ui are shared across modules
