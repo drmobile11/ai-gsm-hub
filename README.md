@@ -31,11 +31,14 @@ npm run dev
 
 ## Running Modules Independently
 
-Each module can be built and served independently:
+Each module can be run independently using the Vite config files:
 
 ### Admin Panel
 
 ```sh
+# Run admin panel in development mode
+npm run dev -- --config vite.config.admin.ts
+
 # Build only the admin panel
 npm run build -- --config vite.config.admin.ts
 
@@ -46,6 +49,9 @@ npm run preview -- --config vite.config.admin.ts
 ### Store
 
 ```sh
+# Run store in development mode
+npm run dev -- --config vite.config.store.ts
+
 # Build only the store
 npm run build -- --config vite.config.store.ts
 
@@ -56,6 +62,9 @@ npm run preview -- --config vite.config.store.ts
 ### Reseller Portal
 
 ```sh
+# Run reseller portal in development mode
+npm run dev -- --config vite.config.reseller.ts
+
 # Build only the reseller portal
 npm run build -- --config vite.config.reseller.ts
 
@@ -72,9 +81,9 @@ To deploy each module to its own domain:
 
 ### Example Deployment Strategy
 
-- Admin Panel: `admin.example.com` (deploy contents of admin build)
-- Store: `store.example.com` (deploy contents of store build)
-- Reseller Portal: `reseller.example.com` (deploy contents of reseller build)
+- Admin Panel: `admin.example.com` (deploy contents of dist/admin folder)
+- Store: `store.example.com` (deploy contents of dist/store folder)
+- Reseller Portal: `reseller.example.com` (deploy contents of dist/reseller folder)
 
 ## Using Modules as Separate Projects
 
@@ -83,13 +92,60 @@ If you want to extract a module as a standalone project:
 1. Create a new directory for your project
 2. Copy the following files/directories:
    - `src/modules/[module-name]` (e.g., `src/modules/admin`)
-   - `src/[module-name].tsx` (e.g., `src/admin.tsx`)
    - `src/index.css`
    - `public` folder
-   - Configuration files (package.json, vite.config.ts, tsconfig.json, etc.)
+   - Configuration files (vite.config.[module-name].ts, tsconfig.json, etc.)
 
-3. Modify `package.json` dependencies to include only what you need
-4. Update import paths in the code if necessary
+3. Create a new package.json with the required dependencies:
+
+```json
+{
+  "name": "gsm-hub-[module-name]",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@radix-ui/react-toast": "^1.2.1",
+    "@tanstack/react-query": "^5.56.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.0",
+    "react-router-dom": "^6.26.2",
+    "sonner": "^1.5.0",
+    "tailwind-merge": "^2.5.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.67",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.3"
+  }
+}
+```
+
+4. Create a new entry point file (e.g., `src/main.tsx`):
+
+```tsx
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { AdminApp } from './modules/admin'; // Change this import based on module
+
+createRoot(document.getElementById("root")!).render(<AdminApp />);
+```
+
+5. Run `npm install` to install dependencies
+6. Start the development server with `npm run dev`
 
 ## Shared Components and Utilities
 
@@ -98,39 +154,6 @@ When extracting a module as a standalone project, remember to copy:
 - UI components from `src/components/ui` used by the module
 - Utility functions from `src/lib` used by the module
 - Hooks from `src/hooks` used by the module
-
-## Customizing Configuration
-
-Each module can have its own configuration by creating separate Vite config files:
-
-- `vite.config.admin.ts`
-- `vite.config.store.ts`
-- `vite.config.reseller.ts`
-
-Example configuration for an individual module:
-
-```ts
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
-
-export default defineConfig({
-  build: {
-    outDir: "dist/admin",
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, "admin.html"),
-      },
-    },
-  },
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-});
-```
 
 ## Technology Stack
 
