@@ -19,9 +19,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Use the admin entry point
+  // Define environment variables properly for Vite
   define: {
-    'process.env.MODULE': JSON.stringify('admin')
+    'import.meta.env.MODULE': JSON.stringify('admin')
   },
   server: {
     host: "::",

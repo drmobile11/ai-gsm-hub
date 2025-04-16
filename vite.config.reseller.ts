@@ -19,9 +19,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Use the reseller entry point
+  // Define environment variables properly for Vite
   define: {
-    'process.env.MODULE': JSON.stringify('reseller')
+    'import.meta.env.MODULE': JSON.stringify('reseller')
   },
   server: {
     host: "::",

@@ -3,9 +3,10 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 
 // Dynamically import the appropriate app based on the MODULE environment variable
+// Using import.meta.env which is the proper way to access environment variables in Vite
 const module = import.meta.env.MODE === 'development' 
-  ? (import.meta.env.VITE_MODULE || process.env.MODULE || 'admin')
-  : (process.env.MODULE || 'admin');
+  ? (import.meta.env.VITE_MODULE || import.meta.env.MODULE || 'admin')
+  : (import.meta.env.MODULE || 'admin');
 
 async function loadApp() {
   let App;
